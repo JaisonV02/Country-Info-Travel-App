@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Countries"
+        android:icon="@drawable/baseline_location_on_24"
+        android:title="Countries" />
+    <item
+        android:id="@+id/CountryLists"
+        android:icon="@drawable/baseline_format_list_bulleted_24"
+        android:title="My Lists" />
+    <item
+        android:id="@+id/Flights"
+        android:icon="@drawable/baseline_flight_24"
+        android:title="Flights" />
+    <item
+        android:id="@+id/Settings"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="Settings" />
+</menu>
