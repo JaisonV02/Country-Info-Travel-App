@@ -2,19 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/Countries"
+        android:id="@+id/countries"
         android:icon="@drawable/baseline_location_on_24"
         android:title="Countries" />
     <item
-        android:id="@+id/CountryLists"
+        android:id="@+id/country_lists"
         android:icon="@drawable/baseline_format_list_bulleted_24"
         android:title="My Lists" />
     <item
-        android:id="@+id/Flights"
+        android:id="@+id/flights"
         android:icon="@drawable/baseline_flight_24"
-        android:title="Flights" />
+        android:title="lights" />
     <item
-        android:id="@+id/Settings"
+        android:id="@+id/settings"
         android:icon="@drawable/baseline_settings_24"
         android:title="Settings" />
 </menu>
