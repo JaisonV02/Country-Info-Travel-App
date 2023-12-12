@@ -59,7 +59,14 @@ public class FetchCountriesTask implements Runnable {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String name = jsonObject.getJSONObject("name").getString("common");
                     String flagUrl = jsonObject.getJSONObject("flags").getString("png");
-                    countries.add(new Country(name, flagUrl));
+
+                    String capital = jsonObject.has("capital") ? jsonObject.getString("capital") : null;
+                    int population = jsonObject.has("population") ? jsonObject.getInt("population") : 0;
+                    double area = jsonObject.has("area") ? jsonObject.getDouble("area") : 0.0;
+                    String region = jsonObject.has("region") ? jsonObject.getString("region") : null;
+                    String subregion = jsonObject.has("subregion") ? jsonObject.getString("subregion") : null;
+
+                    countries.add(new Country(name, flagUrl, capital, population, area, region, subregion));
                 }
             }
 
