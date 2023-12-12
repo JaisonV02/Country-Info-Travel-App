@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
+        // Set default fragment
+        binding.bottomNavigationView.setSelectedItemId(R.id.country_lists);
     }
 
     private void replaceFragment(Fragment fragment) {

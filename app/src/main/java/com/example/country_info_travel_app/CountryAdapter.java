@@ -1,6 +1,7 @@
 package com.example.country_info_travel_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
         return countries.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
         public ImageView flag;
 
@@ -50,6 +51,16 @@ public class CountryAdapter extends RecyclerView.Adapter<CountryAdapter.ViewHold
             super(itemView);
             name = itemView.findViewById(R.id.name);
             flag = itemView.findViewById(R.id.flag);
+            itemView.setOnClickListener(this);
+        }
+
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            Country country = countries.get(position);
+            Intent intent = new Intent(view.getContext(), CountryDetailActivity.class);
+            intent.putExtra("name", country.getName());
+            intent.putExtra("flagUrl", country.getFlagUrl());
+            view.getContext().startActivity(intent);
         }
     }
 }
