@@ -1,23 +1,12 @@
 package com.example.country_info_travel_app;
 
-import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.ItemTouchHelper;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -34,11 +23,6 @@ public class ListFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    private RecyclerView coursesRV;
-    private static final int ADD_COURSE_REQUEST = 1;
-    private static final int EDIT_COURSE_REQUEST = 2;
-    private ViewModal viewmodal;
 
     public ListFragment() {
         // Required empty public constructor
@@ -74,59 +58,7 @@ public class ListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list, container, false);
-
-        coursesRV = view.findViewById(R.id.idRVCourses);
-        FloatingActionButton fab = view.findViewById(R.id.idFABAdd);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(requireContext(), NewCourseActivity.class);
-                startActivityForResult(intent, ADD_COURSE_REQUEST);
-            }
-        });
-
-        coursesRV.setLayoutManager(new LinearLayoutManager(requireContext()));
-        coursesRV.setHasFixedSize(true);
-
-        final CourseRVAdapter adapter = new CourseRVAdapter();
-        coursesRV.setAdapter(adapter);
-
-        viewmodal = ViewModelProviders.of(this).get(ViewModal.class);
-
-        viewmodal.getAllCourses().observe(getViewLifecycleOwner(), new Observer<List<CourseModal>>() {
-            @Override
-            public void onChanged(List<CourseModal> models) {
-                adapter.submitList(models);
-            }
-        });
-
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                viewmodal.delete(adapter.getCourseAt(viewHolder.getAdapterPosition()));
-                Toast.makeText(requireContext(), "Course deleted", Toast.LENGTH_SHORT).show();
-            }
-        }).attachToRecyclerView(coursesRV);
-
-        adapter.setOnItemClickListener(new CourseRVAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(CourseModal model) {
-                Intent intent = new Intent(requireContext(), NewCourseActivity.class);
-                intent.putExtra(NewCourseActivity.EXTRA_ID, model.getId());
-                intent.putExtra(NewCourseActivity.EXTRA_COURSE_NAME, model.getCourseName());
-                intent.putExtra(NewCourseActivity.EXTRA_DESCRIPTION, model.getCourseDescription());
-                intent.putExtra(NewCourseActivity.EXTRA_DURATION, model.getCourseDuration());
-                startActivityForResult(intent, EDIT_COURSE_REQUEST);
-            }
-        });
-
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_list, container, false);
     }
 }

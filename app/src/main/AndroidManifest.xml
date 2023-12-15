@@ -15,9 +15,6 @@
         android:theme="@style/Theme.CountryInfoTravelApp"
         tools:targetApi="31">
         <activity
-            android:name=".NewCourseActivity"
-            android:exported="false" />
-        <activity
             android:name=".CountryDetailActivity"
             android:exported="false" />
         <activity
